@@ -23,29 +23,9 @@ load(filePath)
 WVS <- `WVS_Cross-National_Wave_7_v5_0` |>
   filter(Q50 > 0 & Q262 > 0)
 
-# Perform ANOVA test against questions 50 and 262
-anovaResult <- aov(Q50 ~ Q262, data = WVS)
+# Perform ANOVA test against questions 262 (age) and
+# question 50 (Satisfaction with financial situation)
+anovaResult <- aov(Q262 ~ Q50, data = WVS)
 
-anovaResult
-
+# Display results
 summary(anovaResult)
-
-
-# vector to hold response levels
-ageMeans <- c()
-
-# Add the mean of each age for each response level to the vector
-for (x in 1:10) {
-  # Filter question 50 data to just current level
-  temp <- WVS |>
-    filter(Q50 == x)
-  
-  # Get the age mean for the current level
-  currentMean <- mean(temp$Q262)
-
-  # Add to the overall vector
-  ageMeans <- c(ageMeans, currentMean)
-}
-
-ageMeans
-
