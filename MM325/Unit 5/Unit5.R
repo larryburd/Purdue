@@ -18,17 +18,21 @@ phatZScore <- function(p.hat, p, n) {
   denominator <- sqrt((p * (1 - p)) / n)
   return(numerator / denominator)
 }
-75/150
-phatZScore(.5, .57, 220)
-pnorm(-1.32) * 2
-pnorm(2.5, lower.tail = FALSE)
+xbarZScore(43, 40, 8, 120)
+xbarZScore(5.3, 5.1, .81, 12)
+pnorm(.86)
 
+75/150
+phatZScore(.59, .63, 200)
+pnorm(-1.17)
+pnorm(2.5, lower.tail = FALSE)
+91.0834/13.0833
 
 zScore <- xbarZScore(154, 150, 15, 100)
 pnorm(zScore)
 
 sqrt(1.21)
-
+pf(6.96, 2, 6, lower.tail = F)
 xbarZScore(4.6, 4.8, .7, 110)
 pnorm(-3)
 
