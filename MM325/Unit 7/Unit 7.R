@@ -1,5 +1,24 @@
-# Returns the coeffient of determination for two given vectors
-coefOfDeterm <- function(x, y) {
+# Needed to stop rounding from happening
+options(digits = 15)
+
+# Return adjusted CoD from given residual sum of squares (sse), 
+# total sum of squares (sst), num of data (n), and num of indepent vars (k)
+# Remember to add one to df
+adjCoD <- function(sse, sst, n, k) {
+  CoD <- CoDFromSS (sse, sst)
+  numerator <- n - 1
+  denominator <- n - k - 1
+  return(1 - (numerator / denominator) * CoD)
+}
+
+# Return the coefficient of determinations from a given sum of squares
+# and a total sum of squares
+CoDFromSS <- function(ss, sst) {
+  return(ss/sst)
+}
+
+# Returns the coefficient of determination for two given vectors
+CoDFromData <- function(x, y) {
   r <- cor(x, y)
   return(r * r)
 }
@@ -82,9 +101,28 @@ intervalCalc <-function(a, n, model) {
 }
 
 # Independent and dependent variable v
-i <- c(31,31,38,48,49)
-d <- c(2,4,5,5,7)
-
+i <- c(0,
+       0.5,
+       1,
+       1.5,
+       2,
+       2.5,
+       3,
+       4,
+       5,
+       5.5)
+d <- c(60,
+       66,
+       69,
+       75,
+       78,
+       81,
+       87,
+       93,
+       96,
+       99)
+cor(i, d)
+cor(d, i)
 # dependent variable goes on the left of lm
 res <- lm(d~i)
 
@@ -95,4 +133,41 @@ check_t(.9, 19, 1.88)
 varOfResiduals(res)
 varOfSlope(res)
 intervalCalc(.95, 5, res)
+lmPrediction(491.64210526, 25.34360902, 21)
 
+11278.70+2888.44*8+810.75*7
+
+emp1 <- 10811.66 + 2636.56 * 8 + 757399 * 5
+emp2 <- 10811.66 + 2636.56 * 10 + 757399 * 5
+emp2 - emp1
+emp1
+
+coefOfDetermFromSS(362726.0368, 983912.6838)
+
+adjCoD(621186.6470, 983912.6838, 79, 2)
+
+h <- c()
+gpa <- c(2,2,4,4,2)
+score <- c(25,17,28,27,26)
+res <- lm(score ~ h + gpa)
+summary(res)
+
+data <- read.csv("Purdue/Purdue/MM325/Unit 8/hw.csv")
+names(data)
+# Simple regression
+res <- lm (data$Second.Test.Grade ~ data$First.Test.Grade)
+
+# Multiple Regression
+res <- lm(data$Number.of.Tickets ~ data$Age + data$GPA)
+summary(res)
+
+38915.10696 + 1390.552286
+11722.40 + 3182.56 * 6 + 1202.44 * 3
+a <- 139082.395680 + 3199.644590 * 22
+b <- 139082.395680 + 3199.644590 * 22 + 21288.797965
+a - b
+a
+b
+
+123744.813905+3650.924912*26+17603.709201
+b
