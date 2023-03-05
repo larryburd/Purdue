@@ -26,12 +26,17 @@ main <- function() {
                     "/Purdue/Purdue/MM325/Unit 9/",
                     "MM325_U9_Text1.txt",
                     sep = "")
-  messyText <- read_delim(filePath, delim = "\r\n")
-  messyText <- read_file(filePath)
-  messyText <- messyText[1]
+  filePath <- paste("/home/larryburd/Documents/",
+                    "Purdue/MM325/Unit 9/",
+                    "MM325_U9_Text1.txt",
+                    sep = "")
+  ?read_delim
+  messyText <- read_delim(filePath, delim = "\n")
+  messyText <- tibble(line = 1:6172, text = messyText[1])
   messyText
   # Transform data into tidy text format
   tidyArticles <- messyText |>
+    mutate_all(as.character) |>
     unnest_tokens(word, text)
   
   # Load "stop word" to remove
