@@ -42,7 +42,7 @@ TextDoc <- tm_map(TextDoc, stripWhitespace)
 TextDoc <- tm_map(TextDoc, stemDocument)
 
 # Build a term-document matrix
-TextDoc_dtm <- TermDocumentMatrix(TextDoc)
+TextDoc_dtm <- TermDocumentMatrix(TextDoc).
 dtm_m <- as.matrix(TextDoc_dtm)
 # Sort by descearing value of frequency
 dtm_v <- sort(rowSums(dtm_m),decreasing=TRUE)
