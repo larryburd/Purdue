@@ -32,8 +32,8 @@ pbinom(x, size = n, prob = p)
 pbinom(x, size = n, prob = p, lower.tail = FALSE)
 
 # CHI-SQUARE ----------------------------------------------------
-a <- .025
-df <- 1
+a <- .05
+df <- 24
 
 # Right sided chi-square test critical value
 round(qchisq(a, df, lower.tail = FALSE), digits =3)
